@@ -1,0 +1,10 @@
+[package]
+name = "dragon"
+version = "0.1.0"
+authors = ["Sean Smith <sean.smith@tenx.tech>"]
+edition = "2018"
+
+[dependencies]
+dotenv = "0.9.0"
+rocket = "0.4.0-rc.1"
+diesel = { version = "1.0.0", features = ["postgres"] }
