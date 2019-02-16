@@ -11,6 +11,7 @@ jobs:
       - run:
           name: Check Formatting
           command: |
+             ls
 #            rustup component add rustfmt
 #            cargo fmt -- --check
       - run:
