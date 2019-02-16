@@ -1,0 +1,28 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: rustlang/rust:nightly
+    steps:
+      - checkout
+      - restore_cache:
+          key: project-cache
+      - run:
+          name: Check Formatting
+          command: |
+            rustup component add rustfmt
+            cargo fmt -- --check
+      - run:
+          name: Unit Tests
+          command: |
+            cargo test
+      - run:
+          name: Build
+          command: |
+            cargo build --release
+      - save_cache:
+          key: project-cache
+          paths:
+            - "~/.cargo"
+            - "./target"
