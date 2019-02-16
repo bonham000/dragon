@@ -6,3 +6,5 @@ pub struct Item {
 }
 
 pub type Lesson = Vec<Item>;
+
+pub type LessonSet = Vec<Lesson>;
