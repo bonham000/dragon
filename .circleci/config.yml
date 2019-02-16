@@ -11,7 +11,7 @@ jobs:
       - run:
           name: Check Formatting
           command: |
-            rustup update
+            rustup default stable
             rustup component add rustfmt
             cargo fmt -- --check
       - run:
@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Build
           command: |
-            cargo build --release
+            rustup run nightly cargo build --release
       - save_cache:
           key: project-cache
           paths:
