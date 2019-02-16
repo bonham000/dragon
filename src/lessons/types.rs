@@ -1,5 +1,5 @@
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Item {
     pub characters: &'static str,
     pub phonetic: &'static str,
