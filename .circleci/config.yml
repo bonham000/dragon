@@ -11,8 +11,8 @@ jobs:
       - run:
           name: Check Formatting
           command: |
-            rustup run stable rustup component add rustfmt
-            cargo fmt -- --check
+#            rustup component add rustfmt
+#            cargo fmt -- --check
       - run:
           name: Unit Tests
           command: |
