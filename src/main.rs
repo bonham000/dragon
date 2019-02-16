@@ -1,8 +1,11 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 
-#[macro_use] extern crate rocket;
-#[macro_use] extern crate serde_derive;
-#[macro_use] extern crate diesel;
+#[macro_use]
+extern crate rocket;
+#[macro_use]
+extern crate serde_derive;
+#[macro_use]
+extern crate diesel;
 
 extern crate dotenv;
 use dotenv::dotenv;
@@ -25,5 +28,7 @@ fn lessons() -> Json<Vec<lessons::types::Lesson>> {
 }
 
 fn main() {
-    rocket::ignite().mount("/", routes![index, lessons]).launch();
+    rocket::ignite()
+        .mount("/", routes![index, lessons])
+        .launch();
 }

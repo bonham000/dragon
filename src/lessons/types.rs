@@ -1,4 +1,3 @@
-
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Item {
     pub characters: &'static str,
