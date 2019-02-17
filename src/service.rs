@@ -69,16 +69,66 @@ pub fn find_or_create_user(
 }
 
 #[post("/set-scores/<user_id>", format = "json", data = "<scores_json>")]
-pub fn set_scores(user_id: String, scores_json: Json<ScoreHistory>) -> &'static str {
+pub fn set_scores(
+    user_id: String,
+    scores_json: Json<ScoreHistory>,
+    db: DbConn,
+) -> Result<Json<SavedUser>, Response<'static>> {
+    println!("Setting score status for user: {:?}", user_id);
     // TODO
     // - Authenticate request again Google APIs with provided request header access token
-    // - Save provided score status against user in database
-    println!("Setting score status for user: {:?}", user_id);
 
     let scores = scores_json.into_inner();
     let scores_string = serde_json::to_string(&scores);
-    println!("Scores: {:?}", scores_string);
-    "OK"
+
+    match scores_string {
+        Ok(scores) => {
+            let result = repository::update_user_scores(user_id, scores, &db);
+
+            match result {
+                Ok(user) => Ok(Json(user)),
+                Err(e) => {
+                    println!("Could not update user scores: {:?}", e);
+                    Err(get_failure_status())
+                }
+            }
+        }
+        Err(e) => {
+            println!("Error decoding user scores: {:?}", e);
+            Err(get_failure_status())
+        }
+    }
+}
+
+#[post("/experience/<user_id>", format = "json", data = "<experience_points>")]
+pub fn set_experience_points(
+    user_id: String,
+    experience_points: String,
+    db: DbConn,
+) -> Result<Json<SavedUser>, Response<'static>> {
+    println!("Updating experience for user: {:?}", user_id);
+    // TODO
+    // - Authenticate request again Google APIs with provided request header access token
+
+    let exp = experience_points.parse::<i64>();
+
+    match exp {
+        Ok(exp) => {
+            let result = repository::set_experience_points(user_id, exp, &db);
+
+            match result {
+                Ok(user) => Ok(Json(user)),
+                Err(e) => {
+                    println!("Error setting user experience points: {:?}", e);
+                    Err(get_failure_status())
+                }
+            }
+        }
+        Err(e) => {
+            println!("Error decoding user experience points: {:?}", e);
+            Err(get_failure_status())
+        }
+    }
 }
 
 fn get_failure_status() -> Response<'static> {

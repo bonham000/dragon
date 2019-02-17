@@ -33,6 +33,26 @@ pub fn find_or_create_user(
     }
 }
 
+pub fn update_user_scores(
+    user_uuid: String,
+    scores: String,
+    connection: &PgConnection,
+) -> QueryResult<SavedUser> {
+    diesel::update(users.filter(uuid.eq(user_uuid)))
+        .set(score_history.eq(scores))
+        .get_result(connection)
+}
+
+pub fn set_experience_points(
+    user_uuid: String,
+    exp: i64,
+    connection: &PgConnection,
+) -> QueryResult<SavedUser> {
+    diesel::update(users.filter(uuid.eq(user_uuid)))
+        .set(experience_points.eq(exp))
+        .get_result(connection)
+}
+
 fn find_user_by_email(user_email: &str, connection: &PgConnection) -> QueryResult<SavedUser> {
     users.filter(email.eq(user_email)).get_result(connection)
 }
