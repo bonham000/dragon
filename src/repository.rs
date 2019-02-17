@@ -17,7 +17,7 @@ pub fn find_or_create_user(
             println!("User already exists.");
             Ok(user)
         }
-        Err(NotFound) => {
+        Err(diesel::result::Error::NotFound) => {
             println!("User doesn't exist, creating new user.");
             let user = create_new_user(user_email);
             let result = insert_new_user(user, connection);
