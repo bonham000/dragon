@@ -100,16 +100,22 @@ pub fn set_scores(
     }
 }
 
-#[post("/experience/<user_id>", format = "json", data = "<experience_points>")]
+#[derive(Serialize, Deserialize, Debug)]
+pub struct ExpJson {
+    pub experience_points: String,
+}
+
+#[post("/experience/<user_id>", format = "json", data = "<exp>")]
 pub fn set_experience_points(
     user_id: String,
-    experience_points: String,
+    exp: Json<ExpJson>,
     db: DbConn,
 ) -> Result<Json<SavedUser>, Response<'static>> {
     println!("Updating experience for user: {:?}", user_id);
     // TODO
     // - Authenticate request again Google APIs with provided request header access token
 
+    let experience_points = exp.into_inner().experience_points;
     let exp = experience_points.parse::<i64>();
 
     match exp {
