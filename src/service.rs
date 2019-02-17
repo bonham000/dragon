@@ -20,6 +20,11 @@ pub struct LessonScore {
 pub type ScoreHistory = Vec<LessonScore>;
 
 #[derive(Serialize, Deserialize, Debug)]
+pub struct ExpJson {
+    pub experience_points: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 pub struct MaybeUser {
     pub email: String,
 }
@@ -98,11 +103,6 @@ pub fn set_scores(
             Err(get_failure_status())
         }
     }
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-pub struct ExpJson {
-    pub experience_points: String,
 }
 
 #[post("/experience/<user_id>", format = "json", data = "<exp>")]
