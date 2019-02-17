@@ -55,7 +55,10 @@ pub fn lessons() -> Json<LessonSet> {
 }
 
 #[post("/users", format = "json", data = "<user>")]
-pub fn find_or_create_user(user: Json<MaybeUser>, db: DbConn) -> Result<Json<SavedUser>, Response<'static>> {
+pub fn find_or_create_user(
+    user: Json<MaybeUser>,
+    db: DbConn,
+) -> Result<Json<SavedUser>, Response<'static>> {
     let user_data = user.into_inner();
     let result = repository::find_or_create_user(user_data, &db);
 
