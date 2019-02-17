@@ -1,8 +1,8 @@
 use diesel;
+use rocket::http::Status;
+use rocket::Response;
 use rocket_contrib::json::Json;
-use serde::ser::{Serialize, SerializeStruct, Serializer};
 use serde_json;
-use uuid::Uuid;
 
 use super::schema::users;
 
@@ -20,13 +20,23 @@ pub struct LessonScore {
 pub type ScoreHistory = Vec<LessonScore>;
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct NewUser {
+pub struct MaybeUser {
     pub email: String,
 }
 
-#[derive(Queryable, Insertable, Serialize, Deserialize, Debug)]
+#[derive(Queryable, Insertable, Serialize, Deserialize, Debug, PartialEq, Eq)]
 #[table_name = "users"]
 pub struct InsertableUser {
+    pub email: String,
+    pub uuid: String,
+    pub experience_points: i64,
+    pub score_history: String,
+}
+
+#[derive(Queryable, AsChangeset, Serialize, Deserialize, Debug, Identifiable, PartialEq, Eq)]
+#[table_name = "users"]
+pub struct SavedUser {
+    pub id: i32,
     pub email: String,
     pub uuid: String,
     pub experience_points: i64,
@@ -45,18 +55,14 @@ pub fn lessons() -> Json<LessonSet> {
 }
 
 #[post("/users", format = "json", data = "<user>")]
-pub fn find_or_create_user(user: Json<NewUser>, db: DbConn) -> &'static str {
+pub fn find_or_create_user(user: Json<MaybeUser>, db: DbConn) -> Result<Json<SavedUser>, Response<'static>> {
     let user_data = user.into_inner();
-    // If user does not exist, create
-    let new_user = InsertableUser {
-        email: user_data.email,
-        uuid: Uuid::new_v4().to_string(),
-        experience_points: 0,
-        score_history: "".to_string(),
-    };
+    let result = repository::find_or_create_user(user_data, &db);
 
-    repository::find_or_create_user(new_user, &db);
-    "OK"
+    match result {
+        Ok(user) => Ok(Json(user)),
+        Err(_) => Err(get_failure_status()),
+    }
 }
 
 #[post("/set-scores/<user_id>", format = "json", data = "<scores_json>")]
@@ -70,4 +76,10 @@ pub fn set_scores(user_id: String, scores_json: Json<ScoreHistory>) -> &'static 
     let scores_string = serde_json::to_string(&scores);
     println!("Scores: {:?}", scores_string);
     "OK"
+}
+
+fn get_failure_status() -> Response<'static> {
+    Response::build()
+        .status(Status::InternalServerError)
+        .finalize()
 }
