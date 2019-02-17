@@ -138,10 +138,7 @@ pub fn set_experience_points(
 }
 
 #[delete("/users/<user_id>")]
-pub fn remove_user(
-    user_id: String,
-    db: DbConn,
-) -> Result<String, Response<'static>> {
+pub fn remove_user(user_id: String, db: DbConn) -> Result<String, Response<'static>> {
     let result = repository::delete_user(user_id, &db);
 
     match result {
