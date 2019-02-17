@@ -10,7 +10,7 @@ pub fn build() -> rocket::Rocket {
             service::index,
             service::lessons,
             service::find_or_create_user,
-            service::set_score_status
+            service::set_scores
         ],
     )
 }

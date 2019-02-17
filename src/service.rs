@@ -1,8 +1,8 @@
 use diesel;
-use uuid::Uuid;
-use serde_json;
 use rocket_contrib::json::Json;
-use serde::ser::{Serialize, Serializer, SerializeStruct};
+use serde::ser::{Serialize, SerializeStruct, Serializer};
+use serde_json;
+use uuid::Uuid;
 
 use super::schema::users;
 
@@ -59,15 +59,15 @@ pub fn find_or_create_user(user: Json<NewUser>, db: DbConn) -> &'static str {
     "OK"
 }
 
-#[post("/set-scores/<user_id>", format = "json", data = "<scores>")]
-pub fn set_score_status(user_id: String, scores_json: Json<ScoreHistory>) -> &'static str {
+#[post("/set-scores/<user_id>", format = "json", data = "<scores_json>")]
+pub fn set_scores(user_id: String, scores_json: Json<ScoreHistory>) -> &'static str {
     // TODO
     // - Authenticate request again Google APIs with provided request header access token
     // - Save provided score status against user in database
     println!("Setting score status for user: {:?}", user_id);
 
     let scores = scores_json.into_inner();
-    let scores_string = serde_json::to_string(&scores.into_inner());
+    let scores_string = serde_json::to_string(&scores);
     println!("Scores: {:?}", scores_string);
     "OK"
 }
