@@ -10,12 +10,17 @@ extern crate diesel;
 extern crate dotenv;
 use dotenv::dotenv;
 
+mod db;
 mod lessons;
+mod repository;
 mod routes;
+mod schema;
 mod service;
 
 fn main() {
-    let dragon = routes::build();
+    // Load environment variables
+    dotenv().ok();
 
+    let dragon = routes::build();
     dragon.launch();
 }

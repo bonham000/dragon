@@ -1,9 +1,17 @@
+use diesel;
+use uuid::Uuid;
+use serde_json;
 use rocket_contrib::json::Json;
+use serde::ser::{Serialize, Serializer, SerializeStruct};
 
+use super::schema::users;
+
+use super::db::DbConn;
 use super::lessons;
 use super::lessons::types::LessonSet;
+use super::repository;
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 pub struct LessonScore {
     pub mc: bool,
     pub q: bool,
@@ -12,11 +20,17 @@ pub struct LessonScore {
 pub type ScoreHistory = Vec<LessonScore>;
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct User {
-    pub uuid: String,
+pub struct NewUser {
     pub email: String,
-    pub experience_points: u64,
-    pub score_history: ScoreHistory,
+}
+
+#[derive(Queryable, Insertable, Serialize, Deserialize, Debug)]
+#[table_name = "users"]
+pub struct InsertableUser {
+    pub email: String,
+    pub uuid: String,
+    pub experience_points: i64,
+    pub score_history: String,
 }
 
 #[get("/rocket")]
@@ -31,14 +45,29 @@ pub fn lessons() -> Json<LessonSet> {
 }
 
 #[post("/users", format = "json", data = "<user>")]
-pub fn find_or_create_user(user: Json<User>) -> &'static str {
-    println!("User: {:?}", user);
+pub fn find_or_create_user(user: Json<NewUser>, db: DbConn) -> &'static str {
+    let user_data = user.into_inner();
+    // If user does not exist, create
+    let new_user = InsertableUser {
+        email: user_data.email,
+        uuid: Uuid::new_v4().to_string(),
+        experience_points: 0,
+        score_history: "".to_string(),
+    };
+
+    repository::find_or_create_user(new_user, &db);
     "OK"
 }
 
-#[post("/set-score-status/<user_id>", format = "json", data = "<status>")]
-pub fn set_score_status(user_id: u64, status: Json<ScoreHistory>) -> &'static str {
+#[post("/set-scores/<user_id>", format = "json", data = "<scores>")]
+pub fn set_score_status(user_id: String, scores_json: Json<ScoreHistory>) -> &'static str {
     // TODO
+    // - Authenticate request again Google APIs with provided request header access token
+    // - Save provided score status against user in database
     println!("Setting score status for user: {:?}", user_id);
+
+    let scores = scores_json.into_inner();
+    let scores_string = serde_json::to_string(&scores.into_inner());
+    println!("Scores: {:?}", scores_string);
     "OK"
 }

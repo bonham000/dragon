@@ -1,9 +1,10 @@
 use rocket;
 
+use super::db;
 use super::service;
 
 pub fn build() -> rocket::Rocket {
-    rocket::ignite().mount(
+    rocket::ignite().manage(db::init_pool()).mount(
         "/",
         routes![
             service::index,
