@@ -53,6 +53,10 @@ pub fn set_experience_points(
         .get_result(connection)
 }
 
+pub fn delete_user(user_uuid: String, connection: &PgConnection) -> QueryResult<usize> {
+    diesel::delete(users.filter(uuid.eq(user_uuid))).execute(connection)
+}
+
 fn find_user_by_email(user_email: &str, connection: &PgConnection) -> QueryResult<SavedUser> {
     users.filter(email.eq(user_email)).get_result(connection)
 }
@@ -68,6 +72,6 @@ fn create_new_user(user_email: String) -> InsertableUser {
         email: user_email,
         uuid: Uuid::new_v4().to_string(),
         experience_points: 0,
-        score_history: "".to_string(),
+        score_history: "[]".to_string(),
     }
 }

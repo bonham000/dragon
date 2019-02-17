@@ -137,6 +137,22 @@ pub fn set_experience_points(
     }
 }
 
+#[delete("/users/<user_id>")]
+pub fn remove_user(
+    user_id: String,
+    db: DbConn,
+) -> Result<String, Response<'static>> {
+    let result = repository::delete_user(user_id, &db);
+
+    match result {
+        Ok(_) => Ok(String::from("OK")),
+        Err(e) => {
+            println!("Error deleting user: {:?}", e);
+            Err(get_failure_status())
+        }
+    }
+}
+
 fn get_failure_status() -> Response<'static> {
     Response::build()
         .status(Status::InternalServerError)

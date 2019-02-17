@@ -12,6 +12,7 @@ pub fn build() -> rocket::Rocket {
             service::find_or_create_user,
             service::set_scores,
             service::set_experience_points,
+            service::remove_user,
         ],
     )
 }
