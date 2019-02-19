@@ -8,9 +8,14 @@ pub fn get_content() -> Lesson {
             english: "Correct",
         },
         Item {
-            characters: "天",
-            phonetic: "Tiān",
-            english: "Day",
+            characters: "天天",
+            phonetic: "Tiāntiān",
+            english: "Everyday",
+        },
+        Item {
+            characters: "歡",
+            phonetic: "Huān",
+            english: "Happy",
         },
         Item {
             characters: "很好",

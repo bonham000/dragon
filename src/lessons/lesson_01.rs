@@ -18,11 +18,6 @@ pub fn get_content() -> Lesson {
             english: "Road",
         },
         Item {
-            characters: "歡",
-            phonetic: "Huān",
-            english: "Happy",
-        },
-        Item {
             characters: "喜",
             phonetic: "Xǐ",
             english: "Like",
@@ -123,9 +118,9 @@ pub fn get_content() -> Lesson {
             english: "Big brother",
         },
         Item {
-            characters: "天天",
-            phonetic: "Tiāntiān",
-            english: "Everyday",
+            characters: "天",
+            phonetic: "Tiān",
+            english: "Day",
         },
     ]
 }

@@ -48,11 +48,6 @@ pub fn get_content() -> Lesson {
             english: "Or",
         },
         Item {
-            characters: "",
-            phonetic: "",
-            english: "",
-        },
-        Item {
             characters: "會",
             phonetic: "Huì",
             english: "Can/Will",
