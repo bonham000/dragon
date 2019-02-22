@@ -8,6 +8,11 @@ pub fn get_content() -> Lesson {
             english: "Nice",
         },
         Item {
+            characters: "謝謝",
+            phonetic: "Xièxiè",
+            english: "Thank you",
+        },
+        Item {
             characters: "魚",
             phonetic: "Yú",
             english: "Fish",
