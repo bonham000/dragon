@@ -5,12 +5,12 @@ pub fn get_content() -> Lesson {
         Item {
             characters: "What is idemopotency?",
             english: "An idempotent operation can be repeated over and over without changing the result. There are no side effects.",
-            phonetic: "",
+            phonetic: "placeholder",
         },
         Item {
             characters: "What is atomicity?",
             english: "Atomicity refers to a series of operations (or one) such that all occur or none. This is important for database transactions.",
-            phonetic: "",
+            phonetic: "placeholder",
         },
         Item {
             characters: "",
