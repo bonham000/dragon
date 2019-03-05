@@ -107,6 +107,146 @@ pub fn get_content() -> Lesson {
             english: "A proxy server which stands between a client and returns data on the behalf of one or more servers. To the client, the data appears to come from the proxy server.",
             phonetic: "",
         },
+        Item {
+            characters: "What is redundancy?",
+            english: "Building a system of backups so there is no single point of failure for any system component. For instance, redundancy is built in to main RDMS which use a master slave relationship to replicate write/update operations in multiple databases.",
+            phonetic: "",
+        },
+        Item {
+            characters: "Databases which hold unstructured data with dynamic schema in a distributed manner are:",
+            english: "noSQL (non-relational) databases. These include key-value stores, document stores, wide-column databases, and graph databases. Examples include MongoDB, DynamoDB, Cassandra, Redis, Neo4j, etc.",
+            phonetic: "",
+        },
+        Item {
+            characters: "Databases which are structured and have predefined schema are?",
+            english: "SQL (relational) databases. Examples include MySQL, Oracle, PostgresQL, SQLite, etc.",
+            phonetic: "",
+        },
+        Item {
+            characters: "What is an ACID transaction?",
+            english: "Atomicity, Consistency, Reliability, Durability - a transaction either happens or doesn't as a single isolated unit.",
+            phonetic: "",
+        },
+        Item {
+            characters: "Which database scales more easily, SQL or NoSQL?",
+            english: "Distributed data partitioning/sharding tends to be built in to many NoSQL non-relational databases like MongoDB or Cassandra.",
+            phonetic: "",
+        },
+        Item {
+            characters: "Why is it hard to scale SQL databases horizontally?",
+            english: "SQL relies on representing datasets with multiple tables and relationship (keys) between tables. Running queries on sharded SQL tables is very expensive and slow, at best query results would have to be ordered/filtered/search in the application code.",
+            phonetic: "",
+        },
+        Item {
+            characters: "Which database system is better for performance/scalability? Which is better for reliability/consistency?",
+            english: "NoSQL tends to be better for scale and performance and SQL tends to be better for reliability/consistency (typically SQL database are ACID compliant).",
+            phonetic: "",
+        },
+        Item {
+            characters: "What are some benefits of non-relational databases?",
+            english: "You need performance or scale and can sacrifice consistency or reliability. You have unstructured data, data with poorly-defined schema, or data which is not well represented by tables.",
+            phonetic: "",
+        },
+        Item {
+            characters: "What is the CAP Theorem?",
+            english: "The CAP Theorem states that no distributed system can be Consistent, Available, and Partition Tolerant. It can only be 2 of these 3.",
+            phonetic: "",
+        },
+        Item {
+            characters: "What is consistent hashing?",
+            english: "Consistent hashing is a solution for distributed hash tables and data partitioning which is more balanced and scales better as the partition size grows",
+            phonetic: "",
+        },
+        Item {
+            characters: "What is long polling?",
+            english: "A client-server request protocol where clients request data and if the server doesn't have data available or updated, it leaves the request open until it has new data. Then it responds, after which the client immediately requests more data.",
+            phonetic: "",
+        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
+//        Item {
+//            characters: "",
+//            english: "",
+//            phonetic: "",
+//        },
 //        Item {
 //            characters: "",
 //            english: "",
