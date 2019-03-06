@@ -172,21 +172,21 @@ pub fn get_content() -> Lesson {
             english: "Nginx",
             phonetic: "",
         },
-//        Item {
-//            characters: "",
-//            english: "",
-//            phonetic: "",
-//        },
-//        Item {
-//            characters: "",
-//            english: "",
-//            phonetic: "",
-//        },
-//        Item {
-//            characters: "",
-//            english: "",
-//            phonetic: "",
-//        },
+        Item {
+            characters: "What is SOAP?",
+            english: "Simple Object Access Protocol - a messaging service protocol for exchanging information between web services.",
+            phonetic: "",
+        },
+        Item {
+            characters: "How can typeahead suggestion be designed?",
+            english: "Typically with a trie data structure that stores search queries to allow matching a given query in linear time. Suggestions can be found be recursively retrieving top weighted prefixes from the match.",
+            phonetic: "",
+        },
+        Item {
+            characters: "How can weights be updated for a trie structure which supports typeahead suggestion?",
+            english: "Queries can be logged and batch in map reduce jobs which run periodically on offline data to update the trie structure. Then, the live data can be replaced with the updated data.",
+            phonetic: "",
+        },
 //        Item {
 //            characters: "",
 //            english: "",
