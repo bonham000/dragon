@@ -162,16 +162,16 @@ pub fn get_content() -> Lesson {
             english: "A client-server request protocol where clients request data and if the server doesn't have data available or updated, it leaves the request open until it has new data. Then it responds, after which the client immediately requests more data.",
             phonetic: "",
         },
-//        Item {
-//            characters: "",
-//            english: "",
-//            phonetic: "",
-//        },
-//        Item {
-//            characters: "",
-//            english: "",
-//            phonetic: "",
-//        },
+        Item {
+            characters: "What is HBase?",
+            english: "Apache HBase is an open-source, non-relational, distributed database which runs on top of the Hadoop Distributed File System (HDFS). HBase is ideal for storing large volumes of small, sparse data (e.g. distributed chat message history). RocksDB is a similar solution, which is currently used by Facebook Messenger.",
+            phonetic: "",
+        },
+        Item {
+            characters: "What is a commonly used load balancer?",
+            english: "Nginx",
+            phonetic: "",
+        },
 //        Item {
 //            characters: "",
 //            english: "",
