@@ -187,16 +187,16 @@ pub fn get_content() -> Lesson {
             english: "Queries can be logged and batch in map reduce jobs which run periodically on offline data to update the trie structure. Then, the live data can be replaced with the updated data.",
             phonetic: "",
         },
-//        Item {
-//            characters: "",
-//            english: "",
-//            phonetic: "",
-//        },
-//        Item {
-//            characters: "",
-//            english: "",
-//            phonetic: "",
-//        },
+        Item {
+            characters: "What are some uses for rate limiting?",
+            english: "To prevent abuse, to throttle API usage, to enforce certain behavior (e.g. limit maximum credit card transactions per day), to build a revenue model for a business, e.g. enabling premium features.",
+            phonetic: "",
+        },
+        Item {
+            characters: "What is a quad tree and what can it be used for?",
+            english: "A quad tree is a tree data structure where each node has 4 child nodes. It can be used to represent an information grid (e.g. for geolocation data) with ever increasing detail for each grid space.",
+            phonetic: "",
+        },
 //        Item {
 //            characters: "",
 //            english: "",
