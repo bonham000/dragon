@@ -197,16 +197,16 @@ pub fn get_content() -> Lesson {
             english: "A quad tree is a tree data structure where each node has 4 child nodes. It can be used to represent an information grid (e.g. for geolocation data) with ever increasing detail for each grid space.",
             phonetic: "",
         },
-//        Item {
-//            characters: "",
-//            english: "",
-//            phonetic: "",
-//        },
-//        Item {
-//            characters: "",
-//            english: "",
-//            phonetic: "",
-//        },
+        Item {
+            characters: "What is Dependency Injection/Inversion of Control?",
+            english: "It's a software design pattern where objects declare their dependencies, e.g. in a constructor, which are then provided by a factory method and 'inject' at runtime. This decouples the object from its dependencies.",
+            phonetic: "",
+        },
+        Item {
+            characters: "What is the Single Responsibility Principle?",
+            english: "A software design pattern which states that a single module, class, or function should be responsible for a single functionality or behavior within a software system.",
+            phonetic: "",
+        },
 //        Item {
 //            characters: "",
 //            english: "",
