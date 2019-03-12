@@ -122,11 +122,11 @@ pub fn get_content() -> Lesson {
             english: "Iterate inward from the start and end of the array, tracking the maximum heights on the left and right. For each space, if it's possible to trap water add that trapped water to a running total.",
             phonetic: "",
         },
-//        Item {
-//            characters: "",
-//            english: "",
-//            phonetic: "",
-//        },
+        Item {
+            characters: "Given a string and mappings between encoded and decoded values, return all the ways the string can be decoded.",
+            english: "Use recursion to decode each encoding variation, i.e. encode single or double digit values. Empty string is the base case of 1. Then, use memoization to cache results of each calculation to run in linear time.",
+            phonetic: "",
+        },
 //        Item {
 //            characters: "",
 //            english: "",
