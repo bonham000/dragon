@@ -1,6 +1,3 @@
-pub mod lesson_00;
-pub mod lesson_0z;
-
 pub mod lesson_01;
 pub mod lesson_02;
 pub mod lesson_03;
