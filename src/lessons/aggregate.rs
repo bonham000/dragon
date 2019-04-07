@@ -1,5 +1,3 @@
-use super::lesson_00;
-use super::lesson_0z;
 use super::lesson_01;
 use super::lesson_02;
 use super::lesson_03;
@@ -15,8 +13,6 @@ use super::types::Lesson;
 
 pub fn get_content() -> Vec<Lesson> {
     vec![
-        lesson_00::get_content(),
-        lesson_0z::get_content(),
         lesson_01::get_content(),
         lesson_02::get_content(),
         lesson_03::get_content(),
