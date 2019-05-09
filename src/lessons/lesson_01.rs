@@ -5,7 +5,7 @@ pub fn get_content() -> Lesson {
         Item {
             characters: "美",
             phonetic: "Měi",
-            english: "Nice",
+            english: "Nice, beautiful",
         },
         Item {
             characters: "謝謝",
@@ -25,7 +25,7 @@ pub fn get_content() -> Lesson {
         Item {
             characters: "喜",
             phonetic: "Xǐ",
-            english: "Like",
+            english: "Joyful",
         },
         Item {
             characters: "人",
