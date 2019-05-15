@@ -1,6 +1,7 @@
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Item {
-    pub characters: &'static str,
+    pub simplified: &'static str,
+    pub traditional: &'static str,
     pub phonetic: &'static str,
     pub english: &'static str,
 }

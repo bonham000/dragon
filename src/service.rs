@@ -13,8 +13,9 @@ use super::repository;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 pub struct LessonScore {
-    pub mc: bool,
-    pub q: bool,
+    pub mc_english: bool,
+    pub mc_mandarin: bool,
+    pub quiz_text: bool,
 }
 
 pub type ScoreHistory = Vec<LessonScore>;
@@ -80,7 +81,7 @@ pub fn set_scores(
     db: DbConn,
 ) -> Result<Json<SavedUser>, Response<'static>> {
     println!("Setting score status for user: {:?}", user_id);
-    // TODO
+    // TODO:
     // - Authenticate request again Google APIs with provided request header access token
 
     let scores = scores_json.into_inner();
