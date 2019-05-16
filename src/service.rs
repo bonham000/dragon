@@ -1,4 +1,3 @@
-use diesel;
 use rocket::http::Status;
 use rocket::Response;
 use rocket_contrib::json::Json;
