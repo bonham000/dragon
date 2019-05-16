@@ -69,7 +69,6 @@ fn insert_new_user(user: InsertableUser, connection: &PgConnection) -> QueryResu
 }
 
 fn create_new_user(user_email: String) -> InsertableUser {
-
     let default_score_history = ScoreHistory {
         mc_english: false,
         mc_mandarin: false,
