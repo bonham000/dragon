@@ -1,9 +1,10 @@
 use ::uuid::Uuid;
 use diesel;
 use diesel::prelude::*;
+use serde_json;
 
 use super::schema::users::dsl::*;
-use super::service::{InsertableUser, MaybeUser, SavedUser};
+use super::service::{InsertableUser, MaybeUser, SavedUser, ScoreHistory};
 
 pub fn find_or_create_user(
     user: MaybeUser,
@@ -68,10 +69,18 @@ fn insert_new_user(user: InsertableUser, connection: &PgConnection) -> QueryResu
 }
 
 fn create_new_user(user_email: String) -> InsertableUser {
+
+    let default_score_history = ScoreHistory {
+        mc_english: false,
+        mc_mandarin: false,
+        quiz_text: false,
+        final_completed_lesson_index: 0,
+    };
+
     InsertableUser {
         email: user_email,
         uuid: Uuid::new_v4().to_string(),
         experience_points: 0,
-        score_history: "[]".to_string(),
+        score_history: serde_json::to_string(&default_score_history).unwrap(),
     }
 }

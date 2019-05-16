@@ -12,13 +12,12 @@ use super::lessons::types::LessonSet;
 use super::repository;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-pub struct LessonScore {
+pub struct ScoreHistory {
     pub mc_english: bool,
     pub mc_mandarin: bool,
     pub quiz_text: bool,
+    pub final_completed_lesson_index: i32,
 }
-
-pub type ScoreHistory = Vec<LessonScore>;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ExpJson {
