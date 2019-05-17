@@ -15,6 +15,7 @@ pub struct ScoreHistory {
     pub mc_english: bool,
     pub mc_mandarin: bool,
     pub quiz_text: bool,
+    pub mandarin_pronunciation: bool,
     pub final_completed_lesson_index: i32,
 }
 
