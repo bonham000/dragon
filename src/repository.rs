@@ -73,6 +73,7 @@ fn create_new_user(user_email: String) -> InsertableUser {
         mc_english: false,
         mc_mandarin: false,
         quiz_text: false,
+        mandarin_pronunciation: false,
         final_completed_lesson_index: 0,
     };
 
