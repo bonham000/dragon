@@ -7,8 +7,6 @@ pub fn get_content() -> Lesson {
             simplified: "我",
             pinyin: "wǒ",
             english: "I, me",
-            usage_notes: "",
-            part_of_speech: "Personal Pronoun",
             english_alternate_choices: vec!["She", "It", "They", "We", "Us", "Him"],
         },
         Item {
@@ -16,8 +14,6 @@ pub fn get_content() -> Lesson {
             simplified: "我们",
             pinyin: "wǒmen",
             english: "We, us",
-            usage_notes: "",
-            part_of_speech: "Personal Pronoun",
             english_alternate_choices: vec!["You", "They", "Him/Her", "I, me"],
         },
         Item {
@@ -25,8 +21,6 @@ pub fn get_content() -> Lesson {
             simplified: "你",
             pinyin: "nǐ",
             english: "You",
-            usage_notes: "",
-            part_of_speech: "Personal Pronoun",
             english_alternate_choices: vec!["Him/Her", "They", "Us", "I, me"],
         },
         Item {
@@ -34,8 +28,6 @@ pub fn get_content() -> Lesson {
             simplified: "你们",
             pinyin: "nǐmen",
             english: "You",
-            usage_notes: "(pl.)",
-            part_of_speech: "Personal Pronoun",
             english_alternate_choices: vec!["I, me", "Us", "They", "Him/Her"],
         },
         Item {
@@ -43,8 +35,6 @@ pub fn get_content() -> Lesson {
             simplified: "他",
             pinyin: "tā",
             english: "He, him",
-            usage_notes: "",
-            part_of_speech: "Personal Pronoun",
             english_alternate_choices: vec!["They", "Us", "I, me", "We"],
         },
         Item {
@@ -52,8 +42,6 @@ pub fn get_content() -> Lesson {
             simplified: "她",
             pinyin: "tā",
             english: "She, her",
-            usage_notes: "",
-            part_of_speech: "Personal Pronoun",
             english_alternate_choices: vec!["They", "Us", "I, me", "We"],
         },
         Item {
@@ -61,8 +49,6 @@ pub fn get_content() -> Lesson {
             simplified: "他们",
             pinyin: "tāmen",
             english: "They",
-            usage_notes: "(male+female / male, pl.)",
-            part_of_speech: "Personal Pronoun",
             english_alternate_choices: vec!["I, me", "Us", "Him/Her", "We"],
         },
         Item {
@@ -70,8 +56,6 @@ pub fn get_content() -> Lesson {
             simplified: "她们",
             pinyin: "tāmen",
             english: "They",
-            usage_notes: "(females, pl.)",
-            part_of_speech: "Personal Pronoun",
             english_alternate_choices: vec!["I, me", "Us", "Him/Her", "We"],
         },
     ]

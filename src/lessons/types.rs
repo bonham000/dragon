@@ -6,8 +6,6 @@ pub struct Item {
     pub traditional: &'static str,
     pub pinyin: &'static str,
     pub english: &'static str,
-    pub usage_notes: &'static str,
-    pub part_of_speech: &'static str,
     pub english_alternate_choices: Alternates,
 }
 
