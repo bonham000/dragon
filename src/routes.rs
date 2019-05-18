@@ -1,4 +1,5 @@
 use rocket;
+use rocket_contrib::serve::{StaticFiles};
 
 use super::db;
 use super::service;
@@ -14,5 +15,5 @@ pub fn build() -> rocket::Rocket {
             service::set_experience_points,
             service::remove_user,
         ],
-    )
+    ).mount("/static", StaticFiles::from("static"))
 }
