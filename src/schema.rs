@@ -5,5 +5,6 @@ table! {
         uuid -> Varchar,
         experience_points -> Int8,
         score_history -> Varchar,
+        app_difficulty_setting -> Varchar,
     }
 }

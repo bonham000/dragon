@@ -25,6 +25,11 @@ pub struct ExpJson {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
+pub struct DifficultySetting {
+    pub app_difficulty_setting: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 pub struct MaybeUser {
     pub email: String,
 }
@@ -36,6 +41,7 @@ pub struct InsertableUser {
     pub uuid: String,
     pub experience_points: i64,
     pub score_history: String,
+    pub app_difficulty_setting: String,
 }
 
 #[derive(Queryable, AsChangeset, Serialize, Deserialize, Debug, Identifiable, PartialEq, Eq)]
@@ -46,6 +52,7 @@ pub struct SavedUser {
     pub uuid: String,
     pub experience_points: i64,
     pub score_history: String,
+    pub app_difficulty_setting: String,
 }
 
 #[get("/rocket")]
@@ -135,6 +142,45 @@ pub fn set_experience_points(
             Err(get_failure_status())
         }
     }
+}
+
+#[post(
+    "/difficulty/<user_id>",
+    format = "json",
+    data = "<app_difficulty_setting>"
+)]
+pub fn set_app_difficulty_setting(
+    user_id: String,
+    app_difficulty_setting: Json<DifficultySetting>,
+    db: DbConn,
+) -> Result<Json<SavedUser>, Response<'static>> {
+    // TODO
+    // - Authenticate request again Google APIs with provided request header access token
+
+    let setting_json = app_difficulty_setting.into_inner();
+    let setting = setting_json.app_difficulty_setting;
+
+    println!(
+        "Updating app difficulty setting for user: {:?} to {:?}",
+        user_id, setting
+    );
+    let result = repository::set_app_difficulty_setting(user_id, setting, &db);
+
+    match result {
+        Ok(user) => Ok(Json(user)),
+        Err(e) => {
+            println!("Error setting user experience points: {:?}", e);
+            Err(get_failure_status())
+        }
+    }
+    // match setting {
+    //     Ok(setting) => {
+    //     }
+    //     Err(e) => {
+    //         println!("Error decoding user experience points: {:?}", e);
+    //         Err(get_failure_status())
+    //     }
+    // }
 }
 
 #[delete("/users/<user_id>")]

@@ -54,6 +54,16 @@ pub fn set_experience_points(
         .get_result(connection)
 }
 
+pub fn set_app_difficulty_setting(
+    user_uuid: String,
+    setting: String,
+    connection: &PgConnection,
+) -> QueryResult<SavedUser> {
+    diesel::update(users.filter(uuid.eq(user_uuid)))
+        .set(app_difficulty_setting.eq(setting))
+        .get_result(connection)
+}
+
 pub fn delete_user(user_uuid: String, connection: &PgConnection) -> QueryResult<usize> {
     diesel::delete(users.filter(uuid.eq(user_uuid))).execute(connection)
 }
@@ -82,5 +92,6 @@ fn create_new_user(user_email: String) -> InsertableUser {
         uuid: Uuid::new_v4().to_string(),
         experience_points: 0,
         score_history: serde_json::to_string(&default_score_history).unwrap(),
+        app_difficulty_setting: "MEDIUM".to_string(),
     }
 }

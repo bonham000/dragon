@@ -4,5 +4,6 @@ CREATE TABLE users (
     email VARCHAR NOT NULL,
     uuid VARCHAR NOT NULL,
     experience_points BIGINT NOT NULL,
-    score_history VARCHAR NOT NULL
+    score_history VARCHAR NOT NULL,
+    app_difficulty_setting VARCHAR NOT NULL
 )
