@@ -11,12 +11,24 @@ use super::lessons::types::LessonSet;
 use super::repository;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+pub struct ListScore {
+    pub complete: bool,
+    pub list_key: String,
+    pub list_index: i32,
+    pub number_words_completed: i32,
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
 pub struct ScoreHistory {
     pub mc_english: bool,
     pub mc_mandarin: bool,
     pub quiz_text: bool,
     pub mandarin_pronunciation: bool,
-    pub final_completed_lesson_index: i32,
+    pub list_02_score: ListScore,
+    pub list_03_score: ListScore,
+    pub list_04_score: ListScore,
+    pub list_05_score: ListScore,
+    pub list_06_score: ListScore,
 }
 
 #[derive(Serialize, Deserialize, Debug)]

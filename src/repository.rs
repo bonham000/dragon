@@ -4,7 +4,7 @@ use diesel::prelude::*;
 use serde_json;
 
 use super::schema::users::dsl::*;
-use super::service::{InsertableUser, MaybeUser, SavedUser, ScoreHistory};
+use super::service::{InsertableUser, ListScore, MaybeUser, SavedUser, ScoreHistory};
 
 pub fn find_or_create_user(
     user: MaybeUser,
@@ -84,7 +84,36 @@ fn create_new_user(user_email: String) -> InsertableUser {
         mc_mandarin: false,
         quiz_text: false,
         mandarin_pronunciation: false,
-        final_completed_lesson_index: 0,
+        list_02_score: ListScore {
+            complete: false,
+            list_index: 0,
+            list_key: "2".to_string(),
+            number_words_completed: 0,
+        },
+        list_03_score: ListScore {
+            complete: false,
+            list_index: 1,
+            list_key: "3".to_string(),
+            number_words_completed: 0,
+        },
+        list_04_score: ListScore {
+            complete: false,
+            list_index: 2,
+            list_key: "4".to_string(),
+            number_words_completed: 0,
+        },
+        list_05_score: ListScore {
+            complete: false,
+            list_index: 3,
+            list_key: "5".to_string(),
+            number_words_completed: 0,
+        },
+        list_06_score: ListScore {
+            complete: false,
+            list_index: 4,
+            list_key: "6".to_string(),
+            number_words_completed: 0,
+        },
     };
 
     InsertableUser {
