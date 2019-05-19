@@ -1,6 +1,8 @@
 use super::list_02;
 use super::list_03;
 use super::list_04;
+use super::list_05;
+use super::list_06;
 use super::types::Lesson;
 
 pub fn get_content() -> Vec<Lesson> {
@@ -8,6 +10,8 @@ pub fn get_content() -> Vec<Lesson> {
         list_02::get_content(),
         list_03::get_content(),
         list_04::get_content(),
+        list_05::get_content(),
+        list_06::get_content(),
     ]
 }
 
