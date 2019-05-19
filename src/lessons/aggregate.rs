@@ -1,9 +1,14 @@
 use super::list_01_02;
 use super::list_03;
+use super::list_04;
 use super::types::Lesson;
 
 pub fn get_content() -> Vec<Lesson> {
-    vec![list_01_02::get_content(), list_03::get_content()]
+    vec![
+        list_01_02::get_content(),
+        list_03::get_content(),
+        list_04::get_content(),
+    ]
 }
 
 #[cfg(test)]
