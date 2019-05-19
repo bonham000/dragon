@@ -9,6 +9,12 @@ pub struct Item {
     pub english_alternate_choices: Alternates,
 }
 
-pub type Lesson = Vec<Item>;
+pub type LessonContent = Vec<Item>;
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Lesson {
+    pub list: &'static str,
+    pub content: LessonContent,
+}
 
 pub type LessonSet = Vec<Lesson>;
