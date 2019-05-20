@@ -700,8 +700,8 @@ pub fn get_content() -> Lesson {
             Item {
                 simplified: "花",
                 traditional: "花",
-                pinyin: "(动)",
-                english: "huā spend (verb)",
+                pinyin: "huā",
+                english: "spend (verb)",
                 english_alternate_choices: vec![""],
             },
             Item {
