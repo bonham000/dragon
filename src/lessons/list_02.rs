@@ -239,7 +239,7 @@ pub fn get_content() -> Lesson {
                 simplified: "两",
                 traditional: "兩",
                 pinyin: "liǎng",
-                english: "two",
+                english: "two (alt.)",
                 english_alternate_choices: vec![""],
             },
             Item {
@@ -412,7 +412,7 @@ pub fn get_content() -> Lesson {
             },
             Item {
                 simplified: "正在",
-                traditional: "Seizai",
+                traditional: "正在",
                 pinyin: "zhèngzài",
                 english: "be being",
                 english_alternate_choices: vec![""],
