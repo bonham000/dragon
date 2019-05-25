@@ -4,7 +4,7 @@ use diesel::prelude::*;
 use serde_json;
 
 use super::schema::users::dsl::*;
-use super::service::{InsertableUser, ListScore, MaybeUser, SavedUser, ScoreHistory};
+use super::types::{InsertableUser, ListScore, MaybeUser, SavedUser, ScoreHistory};
 
 pub fn find_or_create_user(
     user: MaybeUser,
