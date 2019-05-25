@@ -6,8 +6,6 @@ use serde_json;
 use super::schema::users;
 
 use super::db::DbConn;
-use super::lessons;
-use super::lessons::types::LessonSet;
 use super::repository;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
@@ -70,12 +68,6 @@ pub struct SavedUser {
 #[get("/rocket")]
 pub fn index() -> &'static str {
     "Hello from Rocket! 🚀"
-}
-
-#[get("/lessons")]
-pub fn lessons() -> Json<LessonSet> {
-    let lesson_set = lessons::aggregate::get_content();
-    Json(lesson_set)
 }
 
 #[post("/users", format = "json", data = "<user>")]

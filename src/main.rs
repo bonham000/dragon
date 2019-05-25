@@ -11,7 +11,6 @@ extern crate dotenv;
 use dotenv::dotenv;
 
 mod db;
-mod lessons;
 mod repository;
 mod routes;
 mod schema;
