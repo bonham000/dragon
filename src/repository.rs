@@ -10,8 +10,7 @@ pub fn find_or_create_user(
     user: MaybeUser,
     connection: &PgConnection,
 ) -> Result<SavedUser, String> {
-    let user_email = user.email;
-    let maybe_user: QueryResult<SavedUser> = find_user_by_email(&user_email, connection);
+    let maybe_user: QueryResult<SavedUser> = find_user_by_email(&user.email, connection);
 
     match maybe_user {
         Ok(user) => {
@@ -20,7 +19,7 @@ pub fn find_or_create_user(
         }
         Err(diesel::result::Error::NotFound) => {
             println!("User doesn't exist, creating new user.");
-            let user = create_new_user(user_email);
+            let user = create_new_user(user);
             let result = insert_new_user(user, connection);
             match result {
                 Ok(user) => Ok(user),
@@ -78,7 +77,7 @@ fn insert_new_user(user: InsertableUser, connection: &PgConnection) -> QueryResu
         .get_result(connection)
 }
 
-fn create_new_user(user_email: String) -> InsertableUser {
+fn create_new_user(user: MaybeUser) -> InsertableUser {
     let default_score_history = ScoreHistory {
         mc_english: false,
         mc_mandarin: false,
@@ -117,7 +116,11 @@ fn create_new_user(user_email: String) -> InsertableUser {
     };
 
     InsertableUser {
-        email: user_email,
+        email: user.email,
+        name: user.name,
+        family_name: user.family_name,
+        given_name: user.given_name,
+        photo_url: user.photo_url,
         uuid: Uuid::new_v4().to_string(),
         experience_points: 0,
         score_history: serde_json::to_string(&default_score_history).unwrap(),
