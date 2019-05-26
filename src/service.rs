@@ -27,6 +27,20 @@ pub fn find_or_create_user(
     }
 }
 
+#[post("/users-update", format = "json", data = "<user>")]
+pub fn update_user(
+    user: Json<SavedUser>,
+    db: DbConn,
+) -> Result<Json<SavedUser>, Response<'static>> {
+    let user_data = user.into_inner();
+    let result = repository::update_user(user_data, &db);
+
+    match result {
+        Ok(user) => Ok(Json(user)),
+        Err(_) => Err(get_failure_status()),
+    }
+}
+
 #[post("/set-scores/<user_id>", format = "json", data = "<scores_json>")]
 pub fn set_scores(
     user_id: String,

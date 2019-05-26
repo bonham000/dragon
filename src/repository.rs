@@ -33,6 +33,24 @@ pub fn find_or_create_user(
     }
 }
 
+pub fn update_user(
+    user: SavedUser,
+    connection: &PgConnection,
+) -> QueryResult<SavedUser> {
+    let user_uuid: String = user.uuid;
+    let exp: i64 = user.experience_points;
+    let scores: String = user.score_history;
+    let setting: String = user.app_difficulty_setting;
+
+    diesel::update(users.filter(uuid.eq(user_uuid)))
+        .set(
+            (score_history.eq(scores),
+            experience_points.eq(exp),
+            app_difficulty_setting.eq(setting))
+        )
+        .get_result(connection)
+}
+
 pub fn update_user_scores(
     user_uuid: String,
     scores: String,

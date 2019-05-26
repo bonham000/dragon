@@ -12,6 +12,7 @@ pub fn build() -> rocket::Rocket {
             routes![
                 service::index,
                 service::find_or_create_user,
+                service::update_user,
                 service::set_scores,
                 service::set_experience_points,
                 service::set_app_difficulty_setting,
