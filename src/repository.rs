@@ -104,14 +104,15 @@ fn create_new_user(user: MaybeUser) -> InsertableUser {
     };
 
     InsertableUser {
+        uuid: Uuid::new_v4().to_string(),
         email: user.email,
         name: user.name,
         family_name: user.family_name,
         given_name: user.given_name,
         photo_url: user.photo_url,
-        uuid: Uuid::new_v4().to_string(),
         experience_points: 0,
-        score_history: serde_json::to_string(&default_score_history).unwrap(),
+        language_setting: "simplified".to_string(),
         app_difficulty_setting: "MEDIUM".to_string(),
+        score_history: serde_json::to_string(&default_score_history).unwrap(),
     }
 }

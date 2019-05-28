@@ -9,6 +9,6 @@ CREATE TABLE users (
     uuid VARCHAR NOT NULL,
     experience_points BIGINT NOT NULL,
     score_history VARCHAR NOT NULL,
-    language_setting: VARCHAR NOT NULL,
+    language_setting VARCHAR NOT NULL,
     app_difficulty_setting VARCHAR NOT NULL
 )

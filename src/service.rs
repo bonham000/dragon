@@ -1,7 +1,6 @@
 use rocket::http::Status;
 use rocket::Response;
 use rocket_contrib::json::Json;
-use serde_json;
 
 use super::db::DbConn;
 use super::repository;
