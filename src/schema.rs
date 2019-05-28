@@ -1,14 +1,23 @@
 table! {
+    messages (id) {
+        id -> Int4,
+        message -> Varchar,
+        author -> Varchar,
+        uuid -> Varchar,
+    }
+}
+
+table! {
     users (id) {
         id -> Int4,
         email -> Varchar,
-        name -> Varchar,
-        family_name -> Varchar,
-        given_name -> Varchar,
-        photo_url -> Varchar,
         uuid -> Varchar,
         experience_points -> Int8,
         score_history -> Varchar,
-        app_difficulty_setting -> Varchar,
     }
 }
+
+allow_tables_to_appear_in_same_query!(
+    messages,
+    users,
+);

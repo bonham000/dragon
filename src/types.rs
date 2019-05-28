@@ -51,6 +51,7 @@ pub struct InsertableUser {
     pub photo_url: String,
     pub experience_points: i64,
     pub score_history: String,
+    pub language_setting: String,
     pub app_difficulty_setting: String,
 }
 
@@ -66,5 +67,6 @@ pub struct SavedUser {
     pub uuid: String,
     pub experience_points: i64,
     pub score_history: String,
+    pub language_setting: String,
     pub app_difficulty_setting: String,
 }
