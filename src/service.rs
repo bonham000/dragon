@@ -27,7 +27,7 @@ pub fn find_or_create_user(
     }
 }
 
-#[post("/users-update", format = "json", data = "<user>")]
+#[put("/users", format = "json", data = "<user>")]
 pub fn update_user(
     user: Json<SavedUser>,
     db: DbConn,
