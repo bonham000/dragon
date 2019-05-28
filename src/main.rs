@@ -11,11 +11,11 @@ extern crate dotenv;
 use dotenv::dotenv;
 
 mod db;
-mod types;
+mod repository;
 mod routes;
 mod schema;
 mod service;
-mod repository;
+mod types;
 
 fn main() {
     // Load environment variables
