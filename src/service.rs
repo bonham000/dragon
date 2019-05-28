@@ -6,7 +6,7 @@ use serde_json;
 use super::db::DbConn;
 use super::repository;
 
-use super::types::{ScoreHistory, ExpJson, DifficultySetting, MaybeUser, SavedUser};
+use super::types::{MaybeUser, SavedUser};
 
 #[get("/rocket")]
 pub fn index() -> &'static str {
@@ -38,101 +38,6 @@ pub fn update_user(
     match result {
         Ok(user) => Ok(Json(user)),
         Err(_) => Err(get_failure_status()),
-    }
-}
-
-#[post("/set-scores/<user_id>", format = "json", data = "<scores_json>")]
-pub fn set_scores(
-    user_id: String,
-    scores_json: Json<ScoreHistory>,
-    db: DbConn,
-) -> Result<Json<SavedUser>, Response<'static>> {
-    println!("Setting score status for user: {:?}", user_id);
-    // TODO:
-    // - Authenticate request again Google APIs with provided request header access token
-
-    let scores = scores_json.into_inner();
-    let scores_string = serde_json::to_string(&scores);
-
-    match scores_string {
-        Ok(scores) => {
-            let result = repository::update_user_scores(user_id, scores, &db);
-
-            match result {
-                Ok(user) => Ok(Json(user)),
-                Err(e) => {
-                    println!("Could not update user scores: {:?}", e);
-                    Err(get_failure_status())
-                }
-            }
-        }
-        Err(e) => {
-            println!("Error decoding user scores: {:?}", e);
-            Err(get_failure_status())
-        }
-    }
-}
-
-#[post("/experience/<user_id>", format = "json", data = "<exp>")]
-pub fn set_experience_points(
-    user_id: String,
-    exp: Json<ExpJson>,
-    db: DbConn,
-) -> Result<Json<SavedUser>, Response<'static>> {
-    println!("Updating experience for user: {:?}", user_id);
-    // TODO
-    // - Authenticate request again Google APIs with provided request header access token
-
-    let experience_points = exp.into_inner().experience_points;
-    let exp = experience_points.parse::<i64>();
-
-    match exp {
-        Ok(exp) => {
-            let result = repository::set_experience_points(user_id, exp, &db);
-
-            match result {
-                Ok(user) => Ok(Json(user)),
-                Err(e) => {
-                    println!("Error setting user experience points: {:?}", e);
-                    Err(get_failure_status())
-                }
-            }
-        }
-        Err(e) => {
-            println!("Error decoding user experience points: {:?}", e);
-            Err(get_failure_status())
-        }
-    }
-}
-
-#[post(
-    "/difficulty/<user_id>",
-    format = "json",
-    data = "<app_difficulty_setting>"
-)]
-pub fn set_app_difficulty_setting(
-    user_id: String,
-    app_difficulty_setting: Json<DifficultySetting>,
-    db: DbConn,
-) -> Result<Json<SavedUser>, Response<'static>> {
-    // TODO
-    // - Authenticate request again Google APIs with provided request header access token
-
-    let setting_json = app_difficulty_setting.into_inner();
-    let setting = setting_json.app_difficulty_setting;
-
-    println!(
-        "Updating app difficulty setting for user: {:?} to {:?}",
-        user_id, setting
-    );
-    let result = repository::set_app_difficulty_setting(user_id, setting, &db);
-
-    match result {
-        Ok(user) => Ok(Json(user)),
-        Err(e) => {
-            println!("Error setting user experience points: {:?}", e);
-            Err(get_failure_status())
-        }
     }
 }
 

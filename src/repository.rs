@@ -51,36 +51,6 @@ pub fn update_user(
         .get_result(connection)
 }
 
-pub fn update_user_scores(
-    user_uuid: String,
-    scores: String,
-    connection: &PgConnection,
-) -> QueryResult<SavedUser> {
-    diesel::update(users.filter(uuid.eq(user_uuid)))
-        .set(score_history.eq(scores))
-        .get_result(connection)
-}
-
-pub fn set_experience_points(
-    user_uuid: String,
-    exp: i64,
-    connection: &PgConnection,
-) -> QueryResult<SavedUser> {
-    diesel::update(users.filter(uuid.eq(user_uuid)))
-        .set(experience_points.eq(exp))
-        .get_result(connection)
-}
-
-pub fn set_app_difficulty_setting(
-    user_uuid: String,
-    setting: String,
-    connection: &PgConnection,
-) -> QueryResult<SavedUser> {
-    diesel::update(users.filter(uuid.eq(user_uuid)))
-        .set(app_difficulty_setting.eq(setting))
-        .get_result(connection)
-}
-
 pub fn delete_user(user_uuid: String, connection: &PgConnection) -> QueryResult<usize> {
     diesel::delete(users.filter(uuid.eq(user_uuid))).execute(connection)
 }

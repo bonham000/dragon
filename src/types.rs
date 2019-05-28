@@ -1,36 +1,5 @@
 use super::schema::users;
 
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-pub struct ListScore {
-    pub complete: bool,
-    pub list_key: String,
-    pub list_index: i32,
-    pub number_words_completed: i32,
-}
-
-#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
-pub struct ScoreHistory {
-    pub mc_english: bool,
-    pub mc_mandarin: bool,
-    pub quiz_text: bool,
-    pub mandarin_pronunciation: bool,
-    pub list_02_score: ListScore,
-    pub list_03_score: ListScore,
-    pub list_04_score: ListScore,
-    pub list_05_score: ListScore,
-    pub list_06_score: ListScore,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-pub struct ExpJson {
-    pub experience_points: String,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-pub struct DifficultySetting {
-    pub app_difficulty_setting: String,
-}
-
 #[derive(Serialize, Deserialize, Debug)]
 pub struct MaybeUser {
     pub email: String,
@@ -69,4 +38,25 @@ pub struct SavedUser {
     pub score_history: String,
     pub language_setting: String,
     pub app_difficulty_setting: String,
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+pub struct ListScore {
+    pub complete: bool,
+    pub list_key: String,
+    pub list_index: i32,
+    pub number_words_completed: i32,
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+pub struct ScoreHistory {
+    pub mc_english: bool,
+    pub mc_mandarin: bool,
+    pub quiz_text: bool,
+    pub mandarin_pronunciation: bool,
+    pub list_02_score: ListScore,
+    pub list_03_score: ListScore,
+    pub list_04_score: ListScore,
+    pub list_05_score: ListScore,
+    pub list_06_score: ListScore,
 }
