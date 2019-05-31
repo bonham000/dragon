@@ -7,6 +7,7 @@ CREATE TABLE users (
     given_name VARCHAR NOT NULL,
     photo_url VARCHAR NOT NULL,
     uuid VARCHAR NOT NULL,
+    push_token VARCHAR NOT NULL,
     experience_points BIGINT NOT NULL,
     score_history VARCHAR NOT NULL,
     settings VARCHAR NOT NULL

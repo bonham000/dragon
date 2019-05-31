@@ -38,11 +38,13 @@ pub fn update_user(user: SavedUser, connection: &PgConnection) -> QueryResult<Sa
     let user_experience: i64 = user.experience_points;
     let scores: String = user.score_history;
     let user_settings: String = user.settings;
+    let user_push_token: String = user.push_token;
 
     diesel::update(users.filter(uuid.eq(user_uuid)))
         .set((
             score_history.eq(scores),
             settings.eq(user_settings),
+            push_token.eq(user_push_token),
             experience_points.eq(user_experience),
         ))
         .get_result(connection)
@@ -115,6 +117,7 @@ fn create_new_user(user: MaybeUser) -> InsertableUser {
         given_name: user.given_name,
         photo_url: user.photo_url,
         experience_points: 0,
+        push_token: "".to_string(),
         settings: serde_json::to_string(&default_settings).unwrap(),
         score_history: serde_json::to_string(&default_score_history).unwrap(),
     }
