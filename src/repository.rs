@@ -117,7 +117,7 @@ fn create_new_user(user: MaybeUser) -> InsertableUser {
         given_name: user.given_name,
         photo_url: user.photo_url,
         experience_points: 0,
-        push_token: "".to_string(),
+        push_token: user.push_token,
         settings: serde_json::to_string(&default_settings).unwrap(),
         score_history: serde_json::to_string(&default_score_history).unwrap(),
     }

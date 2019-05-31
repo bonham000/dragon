@@ -7,6 +7,7 @@ pub struct MaybeUser {
     pub family_name: String,
     pub given_name: String,
     pub photo_url: String,
+    pub push_token: String,
 }
 
 #[derive(Queryable, Insertable, Serialize, Deserialize, Debug, PartialEq, Eq)]
