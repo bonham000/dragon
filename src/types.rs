@@ -20,8 +20,7 @@ pub struct InsertableUser {
     pub photo_url: String,
     pub experience_points: i64,
     pub score_history: String,
-    pub language_setting: String,
-    pub app_difficulty_setting: String,
+    pub settings: String,
 }
 
 #[derive(Queryable, AsChangeset, Serialize, Deserialize, Debug, Identifiable, PartialEq, Eq)]
@@ -36,8 +35,7 @@ pub struct SavedUser {
     pub uuid: String,
     pub experience_points: i64,
     pub score_history: String,
-    pub language_setting: String,
-    pub app_difficulty_setting: String,
+    pub settings: String,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
@@ -59,4 +57,12 @@ pub struct ScoreHistory {
     pub list_04_score: ListScore,
     pub list_05_score: ListScore,
     pub list_06_score: ListScore,
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
+pub struct UserSettings {
+    pub language_setting: String,
+    pub app_difficulty_setting: String,
+    pub auto_proceed_question: bool,
+    pub disable_audio: bool,
 }

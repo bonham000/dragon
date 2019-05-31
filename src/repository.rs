@@ -4,7 +4,7 @@ use diesel::prelude::*;
 use serde_json;
 
 use super::schema::users::dsl::*;
-use super::types::{InsertableUser, ListScore, MaybeUser, SavedUser, ScoreHistory};
+use super::types::{InsertableUser, ListScore, MaybeUser, SavedUser, ScoreHistory, UserSettings};
 
 pub fn find_or_create_user(
     user: MaybeUser,
@@ -35,15 +35,15 @@ pub fn find_or_create_user(
 
 pub fn update_user(user: SavedUser, connection: &PgConnection) -> QueryResult<SavedUser> {
     let user_uuid: String = user.uuid;
-    let exp: i64 = user.experience_points;
+    let user_experience: i64 = user.experience_points;
     let scores: String = user.score_history;
-    let setting: String = user.app_difficulty_setting;
+    let user_settings: String = user.settings;
 
     diesel::update(users.filter(uuid.eq(user_uuid)))
         .set((
             score_history.eq(scores),
-            experience_points.eq(exp),
-            app_difficulty_setting.eq(setting),
+            settings.eq(user_settings),
+            experience_points.eq(user_experience),
         ))
         .get_result(connection)
 }
@@ -100,6 +100,13 @@ fn create_new_user(user: MaybeUser) -> InsertableUser {
         },
     };
 
+    let default_settings = UserSettings {
+        disable_audio: false,
+        auto_proceed_question: true,
+        language_setting: "simplified".to_string(),
+        app_difficulty_setting: "MEDIUM".to_string(),
+    };
+
     InsertableUser {
         uuid: Uuid::new_v4().to_string(),
         email: user.email,
@@ -108,8 +115,7 @@ fn create_new_user(user: MaybeUser) -> InsertableUser {
         given_name: user.given_name,
         photo_url: user.photo_url,
         experience_points: 0,
-        language_setting: "simplified".to_string(),
-        app_difficulty_setting: "MEDIUM".to_string(),
+        settings: serde_json::to_string(&default_settings).unwrap(),
         score_history: serde_json::to_string(&default_score_history).unwrap(),
     }
 }

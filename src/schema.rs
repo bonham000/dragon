@@ -9,7 +9,6 @@ table! {
         uuid -> Varchar,
         experience_points -> Int8,
         score_history -> Varchar,
-        language_setting -> Varchar,
-        app_difficulty_setting -> Varchar,
+        settings -> Varchar,
     }
 }
