@@ -4,12 +4,11 @@ use diesel::prelude::*;
 use serde_json;
 
 use super::schema::users::dsl::*;
-use super::types::{InsertableUser, ListScore, InitialUserData, SavedUser, ScoreHistory, UserSettings};
+use super::types::{
+    InitialUserData, InsertableUser, ListScore, SavedUser, ScoreHistory, UserSettings,
+};
 
-pub fn get_user(
-    user_uuid: String,
-    connection: &PgConnection,
-) -> Result<SavedUser, String> {
+pub fn get_user(user_uuid: String, connection: &PgConnection) -> Result<SavedUser, String> {
     println!("Fetching existing user");
     let result = find_user_by_uuid(&user_uuid, connection);
     match result {
@@ -18,10 +17,7 @@ pub fn get_user(
     }
 }
 
-pub fn create_user(
-    user: InitialUserData,
-    connection: &PgConnection,
-) -> Result<SavedUser, String> {
+pub fn create_user(user: InitialUserData, connection: &PgConnection) -> Result<SavedUser, String> {
     println!("Creating new user");
     let user = create_new_user(user);
     let result = insert_new_user(user, connection);

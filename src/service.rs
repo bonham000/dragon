@@ -13,10 +13,7 @@ pub fn index() -> &'static str {
 }
 
 #[get("/users/<user_uuid>")]
-pub fn get_user(
-    user_uuid: String,
-    db: DbConn,
-) -> Result<Json<SavedUser>, Response<'static>> {
+pub fn get_user(user_uuid: String, db: DbConn) -> Result<Json<SavedUser>, Response<'static>> {
     let result = repository::get_user(user_uuid, &db);
 
     match result {
