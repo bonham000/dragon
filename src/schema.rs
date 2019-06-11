@@ -2,10 +2,7 @@ table! {
     users (id) {
         id -> Int4,
         email -> Varchar,
-        name -> Varchar,
-        family_name -> Varchar,
-        given_name -> Varchar,
-        photo_url -> Varchar,
+        username -> Varchar,
         uuid -> Varchar,
         push_token -> Varchar,
         experience_points -> Int8,

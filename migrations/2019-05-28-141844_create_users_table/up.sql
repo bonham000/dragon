@@ -2,10 +2,7 @@
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR NOT NULL,
-    name VARCHAR NOT NULL,
-    family_name VARCHAR NOT NULL,
-    given_name VARCHAR NOT NULL,
-    photo_url VARCHAR NOT NULL,
+    username VARCHAR NOT NULL,
     uuid VARCHAR NOT NULL,
     push_token VARCHAR NOT NULL,
     experience_points BIGINT NOT NULL,

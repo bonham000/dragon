@@ -1,12 +1,7 @@
 use super::schema::users;
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct MaybeUser {
-    pub email: String,
-    pub name: String,
-    pub family_name: String,
-    pub given_name: String,
-    pub photo_url: String,
+pub struct InitialUserData {
     pub push_token: String,
 }
 
@@ -15,10 +10,7 @@ pub struct MaybeUser {
 pub struct InsertableUser {
     pub uuid: String,
     pub email: String,
-    pub name: String,
-    pub family_name: String,
-    pub given_name: String,
-    pub photo_url: String,
+    pub username: String,
     pub push_token: String,
     pub experience_points: i64,
     pub score_history: String,
@@ -30,10 +22,7 @@ pub struct InsertableUser {
 pub struct SavedUser {
     pub id: i32,
     pub email: String,
-    pub name: String,
-    pub family_name: String,
-    pub given_name: String,
-    pub photo_url: String,
+    pub username: String,
     pub uuid: String,
     pub push_token: String,
     pub experience_points: i64,

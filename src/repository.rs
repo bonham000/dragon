@@ -4,32 +4,30 @@ use diesel::prelude::*;
 use serde_json;
 
 use super::schema::users::dsl::*;
-use super::types::{InsertableUser, ListScore, MaybeUser, SavedUser, ScoreHistory, UserSettings};
+use super::types::{InsertableUser, ListScore, InitialUserData, SavedUser, ScoreHistory, UserSettings};
 
-pub fn find_or_create_user(
-    user: MaybeUser,
+pub fn get_user(
+    user_uuid: String,
     connection: &PgConnection,
 ) -> Result<SavedUser, String> {
-    let maybe_user: QueryResult<SavedUser> = find_user_by_email(&user.email, connection);
+    println!("Fetching existing user");
+    let result = find_user_by_uuid(&user_uuid, connection);
+    match result {
+        Ok(user) => Ok(user),
+        Err(_) => Err("Error fetching user!".to_string()),
+    }
+}
 
-    match maybe_user {
-        Ok(user) => {
-            println!("User already exists.");
-            Ok(user)
-        }
-        Err(diesel::result::Error::NotFound) => {
-            println!("User doesn't exist, creating new user.");
-            let user = create_new_user(user);
-            let result = insert_new_user(user, connection);
-            match result {
-                Ok(user) => Ok(user),
-                Err(_) => Err("Something bad happened!".to_string()),
-            }
-        }
-        Err(e) => {
-            println!("Error in find_or_create_user... {:?}", e);
-            Err("Something bad happened!".to_string())
-        }
+pub fn create_user(
+    user: InitialUserData,
+    connection: &PgConnection,
+) -> Result<SavedUser, String> {
+    println!("Creating new user");
+    let user = create_new_user(user);
+    let result = insert_new_user(user, connection);
+    match result {
+        Ok(user) => Ok(user),
+        Err(_) => Err("Something bad happened!".to_string()),
     }
 }
 
@@ -54,17 +52,13 @@ pub fn delete_user(user_uuid: String, connection: &PgConnection) -> QueryResult<
     diesel::delete(users.filter(uuid.eq(user_uuid))).execute(connection)
 }
 
-fn find_user_by_email(user_email: &str, connection: &PgConnection) -> QueryResult<SavedUser> {
-    users.filter(email.eq(user_email)).get_result(connection)
-}
-
 fn insert_new_user(user: InsertableUser, connection: &PgConnection) -> QueryResult<SavedUser> {
     diesel::insert_into(users)
         .values(&user)
         .get_result(connection)
 }
 
-fn create_new_user(user: MaybeUser) -> InsertableUser {
+fn create_new_user(user: InitialUserData) -> InsertableUser {
     let default_score_history = ScoreHistory {
         mc_english: false,
         mc_mandarin: false,
@@ -111,14 +105,20 @@ fn create_new_user(user: MaybeUser) -> InsertableUser {
 
     InsertableUser {
         uuid: Uuid::new_v4().to_string(),
-        email: user.email,
-        name: user.name,
-        family_name: user.family_name,
-        given_name: user.given_name,
-        photo_url: user.photo_url,
+        email: "".to_string(),
+        username: "".to_string(),
         experience_points: 0,
         push_token: user.push_token,
         settings: serde_json::to_string(&default_settings).unwrap(),
         score_history: serde_json::to_string(&default_score_history).unwrap(),
     }
 }
+
+fn find_user_by_uuid(user_uuid: &str, connection: &PgConnection) -> QueryResult<SavedUser> {
+    users.filter(uuid.eq(user_uuid)).get_result(connection)
+}
+
+// Enable if needed:
+// fn find_user_by_email(user_email: &str, connection: &PgConnection) -> QueryResult<SavedUser> {
+//     users.filter(email.eq(user_email)).get_result(connection)
+// }
