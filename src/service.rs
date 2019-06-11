@@ -50,7 +50,6 @@ pub fn update_user(
     }
 }
 
-// Helper API to delete a user from the database if necessary
 #[delete("/users/<user_uuid>")]
 pub fn remove_user(user_uuid: String, db: DbConn) -> Result<String, Response<'static>> {
     let result = repository::delete_user(user_uuid, &db);
