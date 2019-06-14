@@ -1,5 +1,5 @@
 use rocket;
-use rocket_contrib::serve::StaticFiles;
+// use rocket_contrib::serve::StaticFiles;
 
 use super::db;
 use super::service;
@@ -17,5 +17,5 @@ pub fn build() -> rocket::Rocket {
                 service::remove_user,
             ],
         )
-        .mount("/static", StaticFiles::from("static"))
+        // .mount("/static", StaticFiles::from("static"))
 }
