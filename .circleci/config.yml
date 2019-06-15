@@ -1,7 +1,10 @@
 version: 2
 
 jobs:
-  build:
+  filters:
+    branches:
+      ignore: master
+  tests:
     docker:
       - image: rustlang/rust:nightly
     steps:
@@ -17,10 +20,6 @@ jobs:
           name: Unit Tests
           command: |
             cargo test
-      - run:
-          name: Build
-          command: |
-            rustup run nightly cargo build --release
       - save_cache:
           key: project-cache
           paths:
