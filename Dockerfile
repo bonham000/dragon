@@ -41,7 +41,7 @@ WORKDIR /usr/local
 # CMD ROCKET_PORT=$PORT /usr/local/bin/dragon
 
 # CMD ["sh", "-c", "ROCKET_PORT=$PORT ./bin/x.sh"]
-CMD ["sh", "-c", "./bin/diesel && ROCKET_PORT=$PORT ./bin/dragon"]
+CMD ["sh", "-c", "./bin/diesel setup && ROCKET_PORT=$PORT ./bin/dragon"]
 
 # CMD ["sh", "-c", "./target/release/diesel setup && ROCKET_PORT=$PORT ./target/release/dragon"]
 
