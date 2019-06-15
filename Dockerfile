@@ -6,8 +6,6 @@ RUN cargo build --release
 
 RUN cargo install diesel_cli --no-default-features --features postgres
 
-RUN $(which diesel)
-
 RUN cp $(which diesel) target/release/
 
 FROM rustlang/rust:nightly
