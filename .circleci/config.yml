@@ -1,9 +1,5 @@
 version: 2
-
 jobs:
-  filters:
-    branches:
-      ignore: master
   tests:
     docker:
       - image: rustlang/rust:nightly
@@ -25,3 +21,12 @@ jobs:
           paths:
             - "~/.cargo"
             - "./target"
+
+workflows:
+  version: 2
+  tests:
+    jobs:
+      - tests:
+          filters:
+            branches:
+              ignore: master
