@@ -16,11 +16,13 @@ FROM rustlang/rust:nightly
 
 COPY --from=builder . /usr/local/
 
-WORKDIR /root
+# WORKDIR /root
+
+WORKDIR /root/usr/local
 
 # CMD ROCKET_PORT=$PORT /usr/local/bin/dragon
 
-CMD ["sh", "-c", "cd usr/local && /usr/local/target/release/diesel setup && ROCKET_PORT=$PORT /usr/local/target/release/dragon"]
+CMD ["sh", "-c", "/target/release/diesel setup && ROCKET_PORT=$PORT /target/release/dragon"]
 
 # web: ROCKET_ADDRESS=0.0.0.0 ROCKET_PORT=$PORT ./target/release/dragon
 # release: ./target/release/diesel setup && ./target/release/diesel migration run
