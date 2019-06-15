@@ -8,7 +8,8 @@ ADD . ./
 
 # RUN cp $(which diesel) target/release/
 
-RUN mkdir target/release/
+RUN mkdir target
+RUN mkdir target/release
 
 RUN cp $(which cargo) target/release/
 
