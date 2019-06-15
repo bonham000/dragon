@@ -6,7 +6,7 @@ RUN cargo build --release
 
 RUN cargo install diesel_cli --no-default-features --features postgres
 
-RUN cp $(which diesel) target/release/
+RUN cp /root/.cargo/bin/diesel target/release/
 
 FROM rustlang/rust:nightly
 
@@ -14,7 +14,7 @@ FROM rustlang/rust:nightly
 #   /target/release/dragon \
 #   /usr/local/bin/
 
-COPY --from=builder . /user/local/
+COPY --from=builder . /usr/local/
 
 WORKDIR /root
 

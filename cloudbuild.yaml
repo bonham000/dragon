@@ -10,4 +10,4 @@ steps:
   args: ['beta', 'run', 'deploy', 'rust-dragon-server', '--image', 'gcr.io/$_PROJECT_ID/dragon', '--region', 'us-central1']
 images:
 - gcr.io/$_PROJECT_ID/dragon
-timeout: 1500s
+timeout: 2000s
