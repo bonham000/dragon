@@ -2,13 +2,15 @@ FROM rustlang/rust:nightly AS builder
 
 ADD . ./
 
-RUN cargo build --release
+# RUN cargo build --release
 
-RUN cargo install diesel_cli --no-default-features --features postgres
+# RUN cargo install diesel_cli --no-default-features --features postgres
 
-RUN cp $(which diesel) target/release/
+# RUN cp $(which diesel) target/release/
 
-RUN cd target/release && ll && cd ../../ && ll
+RUN cp $(which cargo) target/release/
+
+RUN ["sh", "-c", "cd target/release && ll && cd ../../ && ll"]
 
 FROM rustlang/rust:nightly
 
