@@ -12,4 +12,3 @@ COPY --from=builder \
 
 WORKDIR /root
 
-CMD ROCKET_PORT=$PORT /usr/local/bin/dragon
