@@ -8,6 +8,10 @@ RUN cargo install diesel_cli --no-default-features --features postgres
 
 RUN cp $(which diesel) target/release/
 
+# RUN mkdir target
+# RUN mkdir target/release
+# RUN cp diesel target/release/
+
 # RUN ["sh", "-c", "cd target/release && ls -a && cd ../../ && pwd"]
 
 # RUN mkdir target
@@ -37,7 +41,7 @@ WORKDIR /usr/local
 # CMD ROCKET_PORT=$PORT /usr/local/bin/dragon
 
 # CMD ["sh", "-c", "ROCKET_PORT=$PORT ./bin/x.sh"]
-CMD ["sh", "-c", "/bin/diesel && ROCKET_PORT=$PORT /bin/dragon"]
+CMD ["sh", "-c", "./bin/diesel && ROCKET_PORT=$PORT ./bin/dragon"]
 
 # CMD ["sh", "-c", "./target/release/diesel setup && ROCKET_PORT=$PORT ./target/release/dragon"]
 
