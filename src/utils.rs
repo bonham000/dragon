@@ -78,13 +78,9 @@ mod tests {
     fn test_create_new_user() {
         let token = "sad9f70as7fd8sa7f0sad70a".to_string();
         let initial_user_data = InitialUserData {
-            
-            
-            
-                    push_token: token.clone(),
+            push_token: token.clone(),
         };
         let result = create_new_user(initial_user_data);
         assert_eq!(result.push_token, token);
-        assert_eq!(result.push_token, "token".to_string());
     }
 }
