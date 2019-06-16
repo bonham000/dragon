@@ -82,5 +82,6 @@ mod tests {
         };
         let result = create_new_user(initial_user_data);
         assert_eq!(result.push_token, token);
+        assert_eq!(result.push_token, "token".to_string());
     }
 }
