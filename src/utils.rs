@@ -69,3 +69,18 @@ pub fn create_new_user(user: InitialUserData) -> InsertableUser {
         score_history: serde_json::to_string(&default_score_history).unwrap(),
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_create_new_user() {
+        let token = "sad9f70as7fd8sa7f0sad70a".to_string();
+        let initial_user_data = InitialUserData {
+            push_token: token.clone(),
+        };
+        let result = create_new_user(initial_user_data);
+        assert_eq!(result.push_token, token);
+    }
+}
