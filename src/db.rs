@@ -7,6 +7,9 @@ use rocket::{Outcome, Request, State};
 use std::env;
 use std::ops::Deref;
 
+/// Reference:
+/// https://dzone.com/articles/creating-a-rest-api-in-rust-using-rocket-and-diese
+
 type Pool = r2d2::Pool<ConnectionManager<PgConnection>>;
 
 pub fn init_pool() -> Pool {

@@ -4,12 +4,16 @@ use rocket::Response;
 
 use super::types::{InitialUserData, InsertableUser, ListScore, ScoreHistory, UserSettings};
 
+/// Helper method to return a failure status code 500 response
 pub fn get_failure_status() -> Response<'static> {
     Response::build()
         .status(Status::InternalServerError)
         .finalize()
 }
 
+/// Helper method to create a new user
+///
+/// * `user` - initial user data
 pub fn create_new_user(user: InitialUserData) -> InsertableUser {
     let default_score_history = ScoreHistory {
         mc_english: false,

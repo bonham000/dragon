@@ -18,10 +18,14 @@ mod service;
 mod types;
 mod utils;
 
+/// Program entry point
 fn main() {
     // Load environment variables
     dotenv().ok();
 
+    // Build the routes
     let dragon = routes::build();
+
+    // Launch the server
     dragon.launch();
 }
