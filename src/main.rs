@@ -16,6 +16,7 @@ mod routes;
 mod schema;
 mod service;
 mod types;
+mod utils;
 
 fn main() {
     // Load environment variables

@@ -11,7 +11,7 @@ pub fn build() -> rocket::Rocket {
             service::get_user,
             service::create_user,
             service::update_user,
-            service::remove_user,
+            service::delete_user,
         ],
     )
 }

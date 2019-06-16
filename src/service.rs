@@ -1,4 +1,3 @@
-use rocket::http::Status;
 use rocket::Response;
 use rocket_contrib::json::Json;
 
@@ -6,6 +5,7 @@ use super::db::DbConn;
 use super::repository;
 
 use super::types::{InitialUserData, SavedUser};
+use super::utils::get_failure_status;
 
 #[get("/rocket")]
 pub fn index() -> &'static str {
@@ -51,7 +51,7 @@ pub fn update_user(
 }
 
 #[delete("/users/<user_uuid>")]
-pub fn remove_user(user_uuid: String, db: DbConn) -> Result<String, Response<'static>> {
+pub fn delete_user(user_uuid: String, db: DbConn) -> Result<String, Response<'static>> {
     let result = repository::delete_user(user_uuid, &db);
 
     match result {
@@ -61,10 +61,4 @@ pub fn remove_user(user_uuid: String, db: DbConn) -> Result<String, Response<'st
             Err(get_failure_status())
         }
     }
-}
-
-fn get_failure_status() -> Response<'static> {
-    Response::build()
-        .status(Status::InternalServerError)
-        .finalize()
 }
