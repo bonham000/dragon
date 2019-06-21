@@ -56,7 +56,7 @@ pub fn create_new_user(user: InitialUserData) -> InsertableUser {
         disable_audio: false,
         auto_proceed_question: true,
         language_setting: "simplified".to_string(),
-        app_difficulty_setting: "MEDIUM".to_string(),
+        app_difficulty_setting: "EASY".to_string(),
     };
 
     InsertableUser {
